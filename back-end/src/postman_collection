@@ -1,0 +1,953 @@
+{
+	"info": {
+		"_postman_id": "583a52fe-17bb-4dd6-bfea-dc33166b4762",
+		"name": "E-COM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32019482"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Seller",
+					"item": [
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res = pm.response.json();\r",
+											"console.log(res.data.seller.data)\r",
+											"pm.environment.set('token', res.data.seller.token);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "kamyab498@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "9525141754",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{url}}/seller/login"
+							},
+							"response": []
+						},
+						{
+							"name": "register",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res = pm.response.json();\r",
+											"console.log(res.data.seller.data)\r",
+											"pm.environment.set('token', res.data.seller.token);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{token}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "muzeeb498@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "9525141754",
+											"type": "text"
+										},
+										{
+											"key": "",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": "{{url}}/seller/register"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"console.log(res.data.user.token)\r",
+									"pm.environment.set('token', res.data.token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "daniyal498@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "9525141754",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "noor",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "alam",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "3",
+									"description": "3 = User, 2 = Seller 1 = Admin",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/register"
+					},
+					"response": []
+				},
+				{
+					"name": "log-in",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"console.log(res.data.user.token)\r",
+									"pm.environment.set('token', res.data.user.token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "daniyal498@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "9525141754",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/login"
+					},
+					"response": [
+						{
+							"name": "Login Data",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "danish498@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "9525141754",
+											"type": "text"
+										}
+									]
+								},
+								"url": "{{url}}/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "466"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d2-E9HLexKTCqTk+2fPhmMfOHWNeW8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Jun 2024 08:43:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"user\": {\n            \"user_id\": 4,\n            \"role_id\": 3,\n            \"email\": \"danish498@gmail.com\",\n            \"first_name\": null,\n            \"last_name\": null,\n            \"image\": null,\n            \"created_at\": \"2024-05-31T07:10:44.000Z\",\n            \"updated_at\": \"2024-05-31T07:10:44.000Z\",\n            \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkYW5pc2g0OThAZ21haWwuY29tIiwicm9sZV9pZCI6MywiaWF0IjoxNzE3NzQ5Nzg0LCJleHAiOjE3MTgzNTQ1ODR9.5jJTnmbCVMhbQ0w-X0KdScSl-627_iexCWhIxqnxJMw\"\n        }\n    },\n    \"message\": \"Login successful\",\n    \"success\": true\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Logged Users",
+			"item": []
+		},
+		{
+			"name": "Category",
+			"item": []
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get all products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": "{{url}}/products"
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": "{{url}}/product/17"
+					},
+					"response": []
+				},
+				{
+					"name": "Add a product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "title20",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "ingredients[]",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "sku",
+									"value": "title20",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "final_price",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "discounted_percentage",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/product"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": []
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "Create Review",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{url}}/reviews"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Review",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"method": "DELETE",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reviews",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Review of specific product",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brand",
+			"item": []
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Add Product to Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "product_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "product_id",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{url}}/cart"
+					},
+					"response": []
+				},
+				{
+					"name": "Get user cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/cart"
+					},
+					"response": [
+						{
+							"name": "User Cart Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{url}}/cart"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1041"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"411-VIaddEh4tQBaXyhQimCthPA9rf8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 07 Jun 2024 10:30:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"cart\": {\n            \"cart_id\": 41,\n            \"user_id\": 5,\n            \"session_id\": \"\",\n            \"created_at\": \"2024-06-07T09:20:55.000Z\",\n            \"updated_at\": \"2024-06-07T09:20:55.000Z\",\n            \"cartItems\": [\n                {\n                    \"cart_item_id\": 63,\n                    \"product_id\": 2,\n                    \"quantity\": 1,\n                    \"cartProducts\": {\n                        \"product_id\": 2,\n                        \"title\": \"ttile\",\n                        \"description\": \"description\",\n                        \"price\": \"30.00\",\n                        \"final_price\": \"20.00\",\n                        \"image\": null\n                    },\n                    \"Price\": 20\n                },\n                {\n                    \"cart_item_id\": 64,\n                    \"product_id\": 3,\n                    \"quantity\": 2,\n                    \"cartProducts\": {\n                        \"product_id\": 3,\n                        \"title\": \"title1\",\n                        \"description\": \"description\",\n                        \"price\": \"30.00\",\n                        \"final_price\": \"20.00\",\n                        \"image\": null\n                    },\n                    \"Price\": 40\n                },\n                {\n                    \"cart_item_id\": 65,\n                    \"product_id\": 4,\n                    \"quantity\": 1,\n                    \"cartProducts\": {\n                        \"product_id\": 4,\n                        \"title\": \"title2\",\n                        \"description\": \"description\",\n                        \"price\": \"30.00\",\n                        \"final_price\": \"20.00\",\n                        \"image\": null\n                    },\n                    \"Price\": 20\n                },\n                {\n                    \"cart_item_id\": 66,\n                    \"product_id\": 5,\n                    \"quantity\": 1,\n                    \"cartProducts\": {\n                        \"product_id\": 5,\n                        \"title\": \"title3\",\n                        \"description\": \"description\",\n                        \"price\": \"30.00\",\n                        \"final_price\": \"20.00\",\n                        \"image\": null\n                    },\n                    \"Price\": 20\n                }\n            ]\n        },\n        \"priceDetails\": {\n            \"totalItems\": 5,\n            \"totalPrice\": 100,\n            \"totalDiscount\": 50\n        }\n    },\n    \"message\": \"Cart retrieved successfully\",\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Update specific cart item quantity",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "quantity",
+									"value": "1",
+									"description": "qyu",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "16",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{url}}/cart/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete specific cart item quantity",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{url}}/cart/sdf"
+					},
+					"response": []
+				},
+				{
+					"name": "Apply coupon to cart",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wishlist",
+			"item": [
+				{
+					"name": "Add to wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "product_id",
+								"value": "17",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "product_id",
+									"value": "23",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/wishlist"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Wishlist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{url}}/wishlist/23"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all wishlists",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/wishlists"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "create user address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "address",
+									"value": "11",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "9525141754",
+									"type": "text"
+								},
+								{
+									"key": "postal_code",
+									"value": "841419",
+									"description": "841419",
+									"type": "text"
+								},
+								{
+									"key": "is_default",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "country_id",
+									"value": "101",
+									"description": "101 india",
+									"type": "text"
+								},
+								{
+									"key": "city_id",
+									"value": "495",
+									"type": "text"
+								},
+								{
+									"key": "state_id",
+									"value": "5",
+									"description": "5 Bihar",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/addresses"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all addresses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/addresses"
+					},
+					"response": []
+				},
+				{
+					"name": "change default address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "is_default",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/default-address/10"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Create Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "amount",
+									"value": "50",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/create-order"
+					},
+					"response": [
+						{
+							"name": "Create Order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": "{{url}}/create-order"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1240"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4d8-1dkfEPvtTKTTP80P4/oEoVCcDYI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 06 Jun 2024 11:32:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"paymentIntent\": {\n            \"id\": \"pi_3POeXXFLFO53yGD51MQ2OSN0\",\n            \"object\": \"payment_intent\",\n            \"amount\": 50000,\n            \"amount_capturable\": 0,\n            \"amount_details\": {\n                \"tip\": {}\n            },\n            \"amount_received\": 0,\n            \"application\": null,\n            \"application_fee_amount\": null,\n            \"automatic_payment_methods\": null,\n            \"canceled_at\": null,\n            \"cancellation_reason\": null,\n            \"capture_method\": \"automatic_async\",\n            \"client_secret\": \"pi_3POeXXFLFO53yGD51MQ2OSN0_secret_RAzQQvrB0CD349SUdpuhEy8Xs\",\n            \"confirmation_method\": \"automatic\",\n            \"created\": 1717673491,\n            \"currency\": \"inr\",\n            \"customer\": null,\n            \"description\": null,\n            \"invoice\": null,\n            \"last_payment_error\": null,\n            \"latest_charge\": null,\n            \"livemode\": false,\n            \"metadata\": {},\n            \"next_action\": null,\n            \"on_behalf_of\": null,\n            \"payment_method\": null,\n            \"payment_method_configuration_details\": null,\n            \"payment_method_options\": {\n                \"card\": {\n                    \"installments\": null,\n                    \"mandate_options\": null,\n                    \"network\": null,\n                    \"request_three_d_secure\": \"automatic\"\n                }\n            },\n            \"payment_method_types\": [\n                \"card\"\n            ],\n            \"processing\": null,\n            \"receipt_email\": null,\n            \"review\": null,\n            \"setup_future_usage\": null,\n            \"shipping\": null,\n            \"source\": null,\n            \"statement_descriptor\": null,\n            \"statement_descriptor_suffix\": null,\n            \"status\": \"requires_payment_method\",\n            \"transfer_data\": null,\n            \"transfer_group\": null\n        },\n        \"orderNum\": \"ORD1717-673536-360\"\n    },\n    \"message\": \"Products fetched successfully\",\n    \"success\": true\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Coupon",
+			"item": []
+		},
+		{
+			"name": "Session",
+			"item": [
+				{
+					"name": "Initialize session",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/initialize-session"
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"console.log(res.data.user.token)\r",
+									"pm.environment.set('token', res.data.user.token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{url}}/session-delete"
+					},
+					"response": []
+				},
+				{
+					"name": "Device Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"console.log(res.data.token)\r",
+									"pm.environment.set('token', res.data.token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "latitude",
+									"value": "785",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "58",
+									"type": "text"
+								},
+								{
+									"key": "device_type",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "device_id",
+									"value": "24564564654654",
+									"description": "session_id",
+									"type": "text"
+								},
+								{
+									"key": "ip_address",
+									"value": "sdafdsfdsfasdfasd",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{url}}/device_register"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": []
+		}
+	]
+}

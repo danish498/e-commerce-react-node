@@ -1,0 +1,622 @@
+openapi: 3.0.0
+info:
+  title: E-COM
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    noauthAuth:
+      type: http
+      scheme: noauth
+tags:
+  - name: Auth
+  - name: Auth > Seller
+  - name: Logged Users
+  - name: Category
+  - name: Product
+  - name: Review
+  - name: Brand
+  - name: Cart
+  - name: Wishlist
+  - name: Address
+  - name: Order
+  - name: Coupon
+  - name: Session
+  - name: Payment
+paths:
+  /seller/login:
+    post:
+      tags:
+        - Auth > Seller
+      summary: Seller login
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: kamyab498@gmail.com
+                password:
+                  type: string
+                  example: "9525141754"
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /seller/register:
+    post:
+      tags:
+        - Auth > Seller
+      summary: Seller register
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: muzeeb498@gmail.com
+                password:
+                  type: string
+                  example: "9525141754"
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /register:
+    post:
+      tags:
+        - Auth
+      summary: User register
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: daniyal498@gmail.com
+                password:
+                  type: string
+                  example: "9525141754"
+                first_name:
+                  type: string
+                  example: noor
+                last_name:
+                  type: string
+                  example: alam
+                role_id:
+                  type: integer
+                  description: 3 = User, 2 = Seller, 1 = Admin
+                  example: 3
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /login:
+    post:
+      tags:
+        - Auth
+      summary: User login
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: daniyal498@gmail.com
+                password:
+                  type: string
+                  example: "9525141754"
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: 466
+            ETag:
+              schema:
+                type: string
+                example: W/"1d2-E9HLexKTCqTk+2fPhmMfOHWNeW8"
+            Date:
+              schema:
+                type: string
+                example: Fri, 07 Jun 2024 08:43:04 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                statusCode: 200
+                data:
+                  user:
+                    user_id: 4
+                    role_id: 3
+                    email: danish498@gmail.com
+                    first_name: null
+                    last_name: null
+                    image: null
+                    created_at: "2024-05-31T07:10:44.000Z"
+                    updated_at: "2024-05-31T07:10:44.000Z"
+                    token: >-
+                      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJkYW5pc2g0OThAZ21haWwuY29tIiwicm9sZV9pZCI6MywiaWF0IjoxNzE3NzQ5Nzg0LCJleHAiOjE3MTgzNTQ1ODR9.5jJTnmbCVMhbQ0w-X0KdScSl-627_iexCWhIxqnxJMw
+                message: Login successful
+                success: true
+  /products:
+    get:
+      tags:
+        - Product
+      summary: Get all products
+      security:
+        - noauthAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /product/17:
+    get:
+      tags:
+        - Product
+      summary: Get a single product
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /product:
+    post:
+      tags:
+        - Product
+      summary: Add a product
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: title20
+                description:
+                  type: string
+                  example: description
+                ingredients:
+                  type: array
+                  items:
+                    type: string
+                  example: [test]
+                sku:
+                  type: string
+                  example: title20
+                category_id:
+                  type: integer
+                  example: 1
+                price:
+                  type: integer
+                  example: 30
+                final_price:
+                  type: integer
+                  example: 20
+                discounted_percentage:
+                  type: integer
+                  example: 10
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /reviews:
+    post:
+      tags:
+        - Review
+      summary: Create review
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  example: 1
+                rating:
+                  type: integer
+                  example: 5
+                comment:
+                  type: string
+                  example: Great product!
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /cart:
+    post:
+      tags:
+        - Cart
+      summary: Add product to cart
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  example: 3
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Cart
+      summary: Get user cart
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: "*"
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: 1041
+            ETag:
+              schema:
+                type: string
+                example: W/"411-VIaddEh4tQBaXyhQimCthPA9rf8"
+            Date:
+              schema:
+                type: string
+                example: Fri, 07 Jun 2024 10:30:55 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                statusCode: 200
+                data:
+                  cart:
+                    cart_id: 41
+                    user_id: 5
+                    session_id: ""
+                    created_at: "2024-06-07T09:20:55.000Z"
+                    updated_at: "2024-06-07T09:20:55.000Z"
+                    items:
+                      - item_id: 11
+                        product_id: 2
+                        cart_id: 41
+                        created_at: "2024-06-07T09:20:55.000Z"
+                        updated_at: "2024-06-07T09:20:55.000Z"
+                        quantity: 1
+                      - item_id: 12
+                        product_id: 3
+                        cart_id: 41
+                        created_at: "2024-06-07T09:20:55.000Z"
+                        updated_at: "2024-06-07T09:20:55.000Z"
+                        quantity: 1
+                message: Cart retrieved successfully
+                success: true
+  /categories:
+    get:
+      tags:
+        - Category
+      summary: Get all categories
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /category:
+    post:
+      tags:
+        - Category
+      summary: Add category
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Electronics
+                description:
+                  type: string
+                  example: All kinds of electronic items
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /category/{id}:
+    put:
+      tags:
+        - Category
+      summary: Update category
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Electronics
+                description:
+                  type: string
+                  example: All kinds of electronic items
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Category
+      summary: Delete category
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /wishlist:
+    post:
+      tags:
+        - Wishlist
+      summary: Add to wishlist
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  example: 2
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Wishlist
+      summary: Get user wishlist
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /address:
+    post:
+      tags:
+        - Address
+      summary: Add user address
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                street:
+                  type: string
+                  example: 123 Main St
+                city:
+                  type: string
+                  example: Springfield
+                state:
+                  type: string
+                  example: IL
+                zip:
+                  type: string
+                  example: "62701"
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Address
+      summary: Get user addresses
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /order:
+    post:
+      tags:
+        - Order
+      summary: Place order
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                cart_id:
+                  type: integer
+                  example: 41
+                address_id:
+                  type: integer
+                  example: 3
+                payment_method:
+                  type: string
+                  example: credit_card
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Order
+      summary: Get user orders
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /coupon:
+    post:
+      tags:
+        - Coupon
+      summary: Apply coupon
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  example: SAVE10
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /session:
+    post:
+      tags:
+        - Session
+      summary: Create user session
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                session_id:
+                  type: string
+                  example: abcd1234
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /payment:
+    post:
+      tags:
+        - Payment
+      summary: Process payment
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: integer
+                  example: 12345
+                amount:
+                  type: integer
+                  example: 100
+                payment_method:
+                  type: string
+                  example: credit_card
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
